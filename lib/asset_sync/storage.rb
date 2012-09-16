@@ -59,7 +59,11 @@ module AssetSync
 
     def get_local_files
       if self.config.manifest
-        if File.exists?(self.config.manifest_path)
+        if self.config.custom_manifest_file and File.exists?(Rails.root.join(self.config.custom_manifest_file))
+          yml = YAML.load(IO.read(Rails.root.join(self.config.custom_manifest_file)))
+          log "Using: Manifest #{self.config.manifest_path}"
+          return yml.values
+        elsif File.exists?(self.config.manifest_path)
           yml = YAML.load(IO.read(self.config.manifest_path))
           log "Using: Manifest #{self.config.manifest_path}"
           return yml.values.map { |f| File.join(self.config.assets_prefix, f) }

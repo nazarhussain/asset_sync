@@ -24,6 +24,8 @@ defaults: &defaults
   # gzip_compression = true
   # Fail silently.  Useful for environments such as Heroku
   # fail_silently = true
+  # custom_manifest_file: 'path to custom manifest file'
+  # fog_endpoint_url: 'end point of fog servers like aws s3 bucket path or aws cloudfront domain'
 
 development:
   <<: *defaults

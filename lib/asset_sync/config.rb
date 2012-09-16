@@ -14,11 +14,13 @@ module AssetSync
     attr_accessor :prefix
     attr_accessor :public_path
     attr_accessor :enabled
+    attr_accessor :custom_manifest_file # Relative to Rails.root
 
     # FOG configuration
     attr_accessor :fog_provider          # Currently Supported ['AWS', 'Rackspace']
     attr_accessor :fog_directory         # e.g. 'the-bucket-name'
     attr_accessor :fog_region            # e.g. 'eu-west-1'
+    attr_accessor :fog_end_point_url
 
     # Amazon AWS
     attr_accessor :aws_access_key_id, :aws_secret_access_key
@@ -112,6 +114,7 @@ module AssetSync
       self.enabled               = yml["enabled"] if yml.has_key?('enabled')
       self.fog_provider          = yml["fog_provider"]
       self.fog_directory         = yml["fog_directory"]
+      self.fog_end_point_url     = yml["fog_end_point_url"] if yml.has_key?('fog_end_point_url')
       self.fog_region            = yml["fog_region"]
       self.aws_access_key_id     = yml["aws_access_key_id"]
       self.aws_secret_access_key = yml["aws_secret_access_key"]
@@ -126,6 +129,7 @@ module AssetSync
       self.fail_silently          = yml["fail_silently"] if yml.has_key?("fail_silently")
       self.always_upload          = yml["always_upload"] if yml.has_key?("always_upload")
       self.ignored_files          = yml["ignored_files"] if yml.has_key?("ignored_files")
+      self.custom_manifest_file   = yml["custom_manifest_file"] if yml.has_key?("custom_manifest_file")
 
       # TODO deprecate the other old style config settings. FML.
       self.aws_access_key_id      = yml["aws_access_key"] if yml.has_key?("aws_access_key")

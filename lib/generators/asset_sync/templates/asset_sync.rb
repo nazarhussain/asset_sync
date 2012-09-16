@@ -16,6 +16,8 @@ AssetSync.configure do |config|
   # config.rackspace_auth_url = "lon.auth.api.rackspacecloud.com"
   <%- end -%>
   config.fog_directory = ENV['FOG_DIRECTORY']
+
+  # config.custom_manifest_file = 'path to custom manifest file relative to Rails.root'
   
   # Increase upload performance by configuring your region
   # config.fog_region = 'eu-west-1'
