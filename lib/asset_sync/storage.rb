@@ -61,7 +61,7 @@ module AssetSync
       if self.config.manifest
         if self.config.custom_manifest_file and File.exists?(Rails.root.join(self.config.custom_manifest_file))
           yml = YAML.load(IO.read(Rails.root.join(self.config.custom_manifest_file)))
-          log "Using: Manifest #{self.config.manifest_path}"
+          log "Using: Manifest #{self.config.custom_manifest_file}"
           return yml.values
         elsif File.exists?(self.config.manifest_path)
           yml = YAML.load(IO.read(self.config.manifest_path))
